@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Map, TileLayer, Marker, Tooltip } from "react-leaflet";
 import { useLeafletZoom, useLeafletIsZooming } from "use-leaflet";
+import Control from "react-leaflet-control";
 import "./styles.css";
 
 const ZoomTooltip = (props) => {
@@ -30,6 +31,31 @@ const App = () => (
       <Marker position={[49.81484804483436, 18.270436935725268]}>
         <ZoomTooltip permanent />
       </Marker>
+
+      <Control position="topright">
+        <div>Start</div>
+        <div>
+          <button>Hlavní vchod</button>
+        </div>
+        <div>
+          <button>Vchod A</button>
+        </div>
+        <div>
+          <button>Vchod E</button>
+        </div>
+      </Control>
+      <Control position="topright">
+        <div>Cíl</div>
+        <div>
+          <button>Hlavní vchod</button>
+        </div>
+        <div>
+          <button>Vchod A</button>
+        </div>
+        <div>
+          <button>Vchod E</button>
+        </div>
+      </Control>
     </Map>
   </div>
 );
