@@ -1,4 +1,4 @@
-import React, { useState }  from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { Map, TileLayer, Marker, Tooltip, Polyline } from "react-leaflet";
 import { useLeafletZoom, useLeafletIsZooming } from "use-leaflet";
@@ -7,11 +7,11 @@ import PathFinder from "geojson-path-finder-nw";
 import point from "turf-point";
 import "./styles.css";
 
-import { createGlobalState, getGlobalState } from 'react-hooks-global-state';
+import { createGlobalState, getGlobalState } from "react-hooks-global-state";
 
 const initialState = {
   start: [49.8146818952885, 18.268606328072604],
-  end: [49.81483246833864, 18.269146793189105]
+  end: [49.8146818952885, 18.268606328072604]
 };
 const { useGlobalState } = createGlobalState(initialState);
 
@@ -26,7 +26,6 @@ const ButtonPozice = (props) => {
     </div>
   );
 };
-
 
 const ZoomTooltip = (props) => {
   const zoom = useLeafletZoom();
@@ -73,7 +72,8 @@ const geojson = {
         ]
       },
       properties: {}
-    },    {
+    },
+    {
       type: "Feature",
       geometry: {
         type: "LineString",
@@ -105,12 +105,9 @@ const geojson = {
         ]
       },
       properties: {}
-    }    
+    }
   ]
 };
-
-
-
 
 const pathFinder = new PathFinder(geojson, {
   weightFn: function (a, b, props) {
@@ -123,7 +120,7 @@ const pathFinder = new PathFinder(geojson, {
 const Cesta = () => {
   const [start, updateStart] = useGlobalState("start");
   const [end, updateEnd] = useGlobalState("end");
-  const path = pathFinder.findPath(point(start),point(end))
+  const path = pathFinder.findPath(point(start), point(end));
   return (
     <div>
       <Polyline positions={path.path} />
@@ -132,7 +129,6 @@ const Cesta = () => {
 };
 
 const App = () => (
-
   <div>
     <Map center={[49.8146818952885, 18.268606328072604]} zoom={18}>
       <TileLayer
@@ -152,41 +148,81 @@ const App = () => (
       <Control position="topright">
         <div>Start</div>
         <div>
-        <ButtonPozice state="start" text="Hlavní vchod" pozice={[49.8146818952885, 18.268606328072604]}/>
+          <ButtonPozice
+            state="start"
+            text="Hlavní vchod"
+            pozice={[49.8146818952885, 18.268606328072604]}
+          />
         </div>
         <div>
-        <ButtonPozice state="start" text="Vchod A" pozice={[49.81522317725818, 18.268702217044886]}/>
+          <ButtonPozice
+            state="start"
+            text="Vchod A"
+            pozice={[49.81522317725818, 18.268702217044886]}
+          />
         </div>
         <div>
-        <ButtonPozice state="start" text="Vchod E" pozice={[49.81484804483436, 18.270436935725268]}/>
+          <ButtonPozice
+            state="start"
+            text="Vchod E"
+            pozice={[49.81484804483436, 18.270436935725268]}
+          />
         </div>
       </Control>
       <Control position="topright">
         <div>Cíl</div>
         <div>
-        <ButtonPozice state="end" text="Hlavní vchod" pozice={[49.8146818952885, 18.268606328072604]}/>
+          <ButtonPozice
+            state="end"
+            text="Hlavní vchod"
+            pozice={[49.8146818952885, 18.268606328072604]}
+          />
         </div>
         <div>
-        <ButtonPozice state="end" text="Vchod A" pozice={[49.81522317725818, 18.268702217044886]}/>
+          <ButtonPozice
+            state="end"
+            text="Vchod A"
+            pozice={[49.81522317725818, 18.268702217044886]}
+          />
         </div>
         <div>
-        <ButtonPozice state="end" text="Vchod E" pozice={[49.81484804483436, 18.270436935725268]}/>
+          <ButtonPozice
+            state="end"
+            text="Vchod E"
+            pozice={[49.81484804483436, 18.270436935725268]}
+          />
         </div>
         <div>
-        <ButtonPozice state="end" text="Infotabule" pozice={[49.81483246833864, 18.269146793189105]}/>
+          <ButtonPozice
+            state="end"
+            text="Infotabule"
+            pozice={[49.81483246833864, 18.269146793189105]}
+          />
         </div>
         <div>
-        <ButtonPozice state="end" text="Trafika" pozice={[49.815042317929006, 18.269922622146662]}/>
+          <ButtonPozice
+            state="end"
+            text="Trafika"
+            pozice={[49.815042317929006, 18.269922622146662]}
+          />
         </div>
         <div>
-        <ButtonPozice state="end" text="Lékárna" pozice={[49.814854967719754, 18.269714080395755]}/>
-        </div>      
+          <ButtonPozice
+            state="end"
+            text="Lékárna"
+            pozice={[49.814854967719754, 18.269714080395755]}
+          />
+        </div>
         <div>
-        <ButtonPozice state="end" text="Odběry" pozice={[49.814857871211004, 18.270566229050914]}/>
-        </div>                  
+          <ButtonPozice
+            state="end"
+            text="Odběry"
+            pozice={[49.814857871211004, 18.270566229050914]}
+          />
+        </div>
       </Control>
 
-      <Cesta/>
+      <Cesta />
     </Map>
   </div>
 );
